@@ -1,4 +1,5 @@
 import matplotlib.pyplot as plt
+import matplotlib.animation as animation
 import time
 
 ball = plt.Circle((5, 5), 1, alpha=0.55, color='blue')
@@ -11,12 +12,11 @@ ax.add_artist(ball)
 ax.set_xlim((0, 10))
 ax.set_ylim((0, 10))
 
-plt.show()
+def animate():
+	ball = plt.Circle((5, 5), 1, alpha=0.55, color='blue')	
 
-i = 0
-while i < 10:
-	plt.text(2, 8, r'slope= %i' % i, fontsize=15)
-	i += 1
-	time.sleep(1)
+ani = animation.FuncAnimation(fig, animate, interval = 2)
+
+plt.show()
 
 
