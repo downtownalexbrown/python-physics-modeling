@@ -1,5 +1,7 @@
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation
+import numpy as np
+import sys
 from matplotlib.patches import Ellipse
 
 # Initilize the graph and stuff
@@ -16,14 +18,23 @@ maxd = max(dx, dy)
 width = 1 * maxd / dx
 height = 1 * maxd / dy
 
-# Add the ball object
-ax.add_artist(Ellipse((2, 2), width, height, 1))
+# Two ellipses to demonstrate alpa
+ax.add_artist(Ellipse((1, 7), width, height, 1, color='green', alpha=0.75))
+ax.add_artist(Ellipse((1, 8), width, height, 1, color='green', alpha=0.75))
 
-#def animate():
-ball = plt.Circle((7, 7), 1, alpha=0.55, color='blue')	
-ax.add_artist(ball)
-#ani = animation.FuncAnimation(fig, animate, interval = 2)
 
-plt.show()
+def update(i):
+	# Label axis with time and print new ellipse
+	label = 'time: {0}s'.format(i)
+	ax.set_xlabel(label)
+	ax.add_artist(Ellipse((i + 1, 2), width, height, 1, color='green', alpha=0.55))
+
+if __name__ == '__main__':
+	# Call animation function at an interval of 1 second for 10 frames
+	ani = animation.FuncAnimation(fig, update, frames = np.arange(0,10), interval = 1000)
+	if len(sys.argv) > 1 and sys.argv[1] == 'save':
+		ani.save('plot.gif', dpi=80, writer='imagemagick')
+	else:
+		plt.show()
 
 
