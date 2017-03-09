@@ -3,12 +3,21 @@ import matplotlib.animation as animation
 import numpy as np
 from math import sin,cos
 import sys
-from matplotlib.patches import Ellipse
+from matplotlib.patches import Ellipse, Circle
 
 # Initilize the graph and stuff
 fig = plt.figure()
 fig.set_dpi(100)
 ax = plt.subplot(xlim=(0,10), ylim=(0,10))
+#ax.axis("equal")
+
+# calculate dimensions of axes 1 in figure units
+x0, y0, dx, dy = ax.get_position().bounds
+maxd = max(dx, dy)
+width = 6 * maxd / dx
+height = 6 * maxd / dy
+
+fig.set_size_inches((width, height))
 
 # Fancy geometry stuff to scale the width and height of the ellipse
 x0, y0 = ax.transAxes.transform((0, 0)) # lower left in pixels
@@ -20,9 +29,9 @@ width = 1 * maxd / dx
 height = 1 * maxd / dy
 
 # Two ellipses to demonstrate alpa
-ax.add_artist(Ellipse((1, 7), width, height, 1, color='green', alpha=0.75))
+ax.add_artist(Ellipse((0, 0), width, height, 1, color='green', alpha=0.75))
 ax.add_artist(Ellipse((1, 8), width, height, 1, color='green', alpha=0.75))
-
+ax.add_artist(Circle((8,8), 1, color='green', alpha=0.75))
 
 def update(i):
 	# Label axis with time and print new ellipse
