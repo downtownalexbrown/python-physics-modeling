@@ -1,6 +1,7 @@
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation
 import numpy as np
+from math import sin,cos
 import sys
 from matplotlib.patches import Ellipse
 
@@ -27,7 +28,10 @@ def update(i):
 	# Label axis with time and print new ellipse
 	label = 'time: {0}s'.format(i)
 	ax.set_xlabel(label)
-	ax.add_artist(Ellipse((i + 1, 2), width, height, 1, color='green', alpha=0.55))
+
+	x = 5 + 2 * cos(i)
+	y = 5 + 2 * sin(i)
+	ax.add_artist(Ellipse((x,y), width, height, 1, color='green', alpha=0.55))
 
 if __name__ == '__main__':
 	# Call animation function at an interval of 1 second for 10 frames
