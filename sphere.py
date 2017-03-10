@@ -11,22 +11,22 @@ fig.set_dpi(100)
 ax = plt.subplot(xlim=(0,10), ylim=(0,10))
 #ax.axis("equal")
 
-# calculate dimensions of axes 1 in figure units
-x0, y0, dx, dy = ax.get_position().bounds
-maxd = max(dx, dy)
-width = 6 * maxd / dx
-height = 6 * maxd / dy
+# Weird stackoverflow solution to dpi difference
+#x0, y0, dx, dy = ax.get_position().bounds
+#maxd = max(dx, dy)
+#width = 6 * maxd / dx
+#height = 6 * maxd / dy
 
-fig.set_size_inches((width, height))
+#fig.set_size_inches((5, 5))
 
-# Fancy geometry stuff to scale the width and height of the ellipse
+# Fancy stuff to scale the width and height of the ellipse
 x0, y0 = ax.transAxes.transform((0, 0)) # lower left in pixels
 x1, y1 = ax.transAxes.transform((10, 10)) # upper right in pixes
 dx = x1 - x0
 dy = y1 - y0
 maxd = max(dx, dy)
-width = 1 * maxd / dx
-height = 1 * maxd / dy
+width = 0.5 * maxd / dx
+height = 0.5 * maxd / dy
 
 # Two ellipses to demonstrate alpa
 ax.add_artist(Ellipse((0, 0), width, height, 1, color='green', alpha=0.75))
@@ -38,8 +38,10 @@ def update(i):
 	label = 'time: {0}s'.format(i)
 	ax.set_xlabel(label)
 
-	x = 5 + 2 * cos(i)
-	y = 5 + 2 * sin(i)
+	angle = (np.pi/4) * i
+
+	x = 5 + 2 * cos(angle)
+	y = 5 + 2 * sin(angle)
 	ax.add_artist(Ellipse((x,y), width, height, 1, color='green', alpha=0.55))
 
 if __name__ == '__main__':
