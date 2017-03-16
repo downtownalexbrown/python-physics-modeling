@@ -8,7 +8,7 @@ from matplotlib.patches import Ellipse, Circle
 # Initilize the graph and stuff
 fig = plt.figure()
 fig.set_dpi(100)
-ax = plt.subplot(xlim=(0,10), ylim=(0,10))
+ax = plt.subplot(xlim=(0,502), ylim=(0,500)) #Distance from sun to earth is 1.496x10^11m
 #ax.axis("equal")
 
 # Weird stackoverflow solution to dpi difference
@@ -40,9 +40,9 @@ def update(i):
 
 	angle = (np.pi/4) * i
 
-	x = 5 + 2 * cos(angle)
-	y = 5 + 2 * sin(angle)
-	ax.add_artist(Ellipse((x,y), width, height, 1, color='green', alpha=0.55))
+	x = 50 + 200 * cos(angle)
+	y = 50 + 200 * sin(angle)
+	ax.add_artist(Circle((x,y), 50, color='green', alpha=0.55))
 
 if __name__ == '__main__':
 	# Call animation function at an interval of 1 second for 10 frames
