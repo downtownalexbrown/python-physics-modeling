@@ -23,7 +23,7 @@ while theta < 2*np.pi: # Completes one orbit
 
 if __name__ == '__main__':
         if len(sys.argv) > 1 and sys.argv[1] == 'save':
-                ani.save('plot.gif', dpi=80, writer='imagemagick')
+                plt.savefig('plot.jpg', dpi=80, writer='imagemagick')
         else:
 		plt.polar(*zip(*points))
                 plt.show()
