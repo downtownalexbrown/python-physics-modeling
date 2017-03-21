@@ -41,8 +41,15 @@ ax.annotate('Eccentricity: 0.0167',
             horizontalalignment='left',
             verticalalignment='bottom')
 
-velocity = np.sqrt(()
+ax.annotate('Values are in million km',
+            xy=(0, c),  # theta, radius
+            xytext=(0.05, 0.08),    # fraction, fraction
+            textcoords='figure fraction',
+            horizontalalignment='left',
+            verticalalignment='bottom')
 
+radius = 5
+velocity = np.sqrt((6.67 * 10**-11) * (2/radius)-(1/a))
 
 #earth = ax.scatter(points[0], cmap='hsv', alpha = 0.75, color='green')
 

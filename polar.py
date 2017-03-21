@@ -39,11 +39,13 @@ ax.annotate('Eccentricity: 0.0167',
             horizontalalignment='left',
             verticalalignment='bottom')
 
-earth = ax.scatter(points[0], cmap='hsv', alpha = 0.75, color='green')
+ax.annotate('Values are in million km',
+            xy=(0, c),  # theta, radius
+            xytext=(0.05, 0.08),    # fraction, fraction
+            textcoords='figure fraction',
+            horizontalalignment='left',
+            verticalalignment='bottom')
 
-#for coordinate in points:
-	# points[0] is (0, 147.11966578236201). I need to split the string to get each point, then apply that to the scatter function
-	
 
 if __name__ == '__main__':
         if len(sys.argv) > 1 and sys.argv[1] == 'save':
